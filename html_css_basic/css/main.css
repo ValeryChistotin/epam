@@ -1,0 +1,25 @@
+html,
+body {
+  width: 98%;
+  height: 100%;
+}
+
+body{
+  background: url('http://subtlepatterns.com/patterns/grid.png');
+  font-family: 'sans-serif';
+}
+
+h1{
+  font-family: 'Arial';
+}
+
+p{
+  font-family: 'Verdana';
+}
+
+figcaption{
+  font-family: 'Georgia';
+}
+
+q{
+  font-family: 'Times New Roman';
