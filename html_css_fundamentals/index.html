@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h2>form here</h2>
+      <span>* required fields</span>
+      <hr>
+      <form action="POST">
+        <div class="labels">
+          <label for="name">name: </label>
+          <label for="email">email: </label>
+          <label for="website">website: </label>
+          <label for="message">message: </label>
+        </div>
+        <div class="inputs">
+          <input type="text" name="name" placeholder="placeholder text">
+          <div class="hint-area">
+            <input class="hint-in" type="email" name="email" placeholder="placeholder text" required="required">
+            <div class="hint">Form field hint</div>
+          </div>
+          <div class="hint-area">
+            <input class="hint-in" type="url" name="website" placeholder="placeholder text" required="required">
+            <div class="hint">Form field hint</div>
+          </div>
+          <textarea name="message" cols="30" rows="10"></textarea>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
