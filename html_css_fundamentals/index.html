@@ -11,7 +11,7 @@
       <h2>form here</h2>
       <span>* required fields</span>
       <hr>
-      <form action="POST">
+      <form>
         <div class="labels">
           <label for="name">name: </label>
           <label for="email">email: </label>
@@ -19,16 +19,16 @@
           <label for="message">message: </label>
         </div>
         <div class="inputs">
-          <input type="text" name="name" placeholder="placeholder text">
+          <input type="text" name="name" placeholder="placeholder text" id="name">
           <div class="hint-area">
-            <input class="hint-in" type="email" name="email" placeholder="placeholder text" required="required">
+            <input class="hint-in" type="email" name="email" placeholder="placeholder text" required id="email">
             <div class="hint">Form field hint</div>
           </div>
           <div class="hint-area">
-            <input class="hint-in" type="url" name="website" placeholder="placeholder text" required="required">
+            <input class="hint-in" type="url" name="website" placeholder="placeholder text" required id="website">
             <div class="hint">Form field hint</div>
           </div>
-          <textarea name="message" cols="30" rows="10"></textarea>
+          <textarea name="message" cols="30" rows="10" id="message"></textarea>
           <button type="submit">Submit</button>
         </div>
       </form>
