@@ -1,0 +1,4 @@
+img {
+  -webkit-clip-path: circle(25% at 50% 50%);
+  clip-path: circle(25% at 50% 50%);
+}
