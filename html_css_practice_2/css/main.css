@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  color: #818181;
+  font-family: 'Open Sans';
+}
+
+.wrapper {
+  margin-top: 80px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 600px;
+  height: 350px;
+  margin: auto;
+}
+
+/*===================
+ Header
+===================
+*/
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 80px;
+  border-bottom: 1px solid #eee;
+  background-color: rgba(237, 237, 237, 0.4);
+}
+
+h2.post {
+  color: #414141;
+}
+
+h2.next {
+  font-weight: 400;
+}
+
+/*===================
+ Current
+===================
+*/
+
+.current {
+  display: flex;
+  justify-content: space-between;
+}
+
+.marker,
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 280px;
+  height: 40px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  background-color: rgba(237, 237, 237, 0.2);
+}
+
+.marker i,
+.category i {
+  position: absolute;
+  margin-left: -80px;
+}
+
+/*===================
+ Form
+===================
+*/
+
+form {
+  width: 400px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.double {
+  display: flex;
+}
+
+.double input {
+  border: 2px solid #eee;
+}
+
+h2,
+input,
+label,
+.marker,
+.category {
+  text-transform: capitalize;
+}
+
+input {
+  border: none;
+  font-size: 20px;
+  height: 60px;
+  color: #414141;
+  padding: 15px 0 0 10px;
+  box-sizing: border-box;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 -20px 10px;
+}
+
+
+input.right-none {
+  border-right: none;
+}
+
+input.left-none {
+  border-left: none;
+}
+
+
+input:invalid + label {
+  opacity: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+input:focus:valid + label {
+  color: #4874c6;
+  opacity: 1;
+}
