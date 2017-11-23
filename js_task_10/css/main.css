@@ -1,0 +1,66 @@
+body {
+  font-family: 'Open Sans';
+}
+
+/*=============================
+  Task 1
+=============================*/
+
+ul li {
+  list-style: none;
+}
+
+.accordion-control {
+  width: 200px;
+  height: 60px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1px;
+  border-radius: 5px;
+  background-color: #1f375f;
+  transition: background-color .5s;
+}
+
+.accordion-control:hover {
+  background-color: #5e7291;
+}
+
+.accordion-panel {
+  display: none;
+  width: 600px;
+  border: 3px solid #3d5686;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: -2px;
+  margin-bottom: 5px;
+}
+
+.active {
+  display: block;
+}
+
+/*=============================
+  Task 2
+=============================*/
+
+button#start {
+  width: 140px;
+  height: 40px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 3px;
+  background-color: #458284;
+
+  box-shadow: inset 0px 1px 0px #28585a, 0px 3px 0px 0px #28585a, 0px 5px 5px #28585a;
+}
+
+button#start: active {
+  top:5px;
+  box-shadow: inset 0px 1px 0px #28585a, 0px 2px 0px 0px #28585a, 0px 5px 3px #999;
+}
