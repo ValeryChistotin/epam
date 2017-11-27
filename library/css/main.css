@@ -438,6 +438,20 @@ ul.catgs a {
   text-transform: capitalize;
 }
 
+.notifications-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 14px;
+  height: 14px;
+
+  font-size: .6em;
+  color: #97b3ce;
+  background-color: #444c63;
+  border-radius: 50%;
+}
+
 /*=============================
  Article
 =============================*/
@@ -571,38 +585,23 @@ input.search:focus {
   font-size: .9em;
 }
 
-.rate {
+.rating {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
 
-  width: 68px;
+.rating-item {
   cursor: pointer;
-  margin-top: 8px;
+  color: rgba(255, 171, 0, 0.6);
+  transition: color .6s;
 }
 
-.rate-wrapper {
-  display: flex-reverse;
-  font-size: .9em;
-}
-
-.rate-wrapper:after {
-  content: "";
-}
-
-.rate-wrapper label {
-  float: right;
-  cursor: pointer;
+.rating-item.active,
+.rating-item.active ~ *,
+.rating-item:hover,
+.rating-item:hover ~ * {
   color: #ffab00;
-}
-
-.rate-wrapper input {
-  display: none;
-}
-
-label.rate-label:hover:before,
-label.rate-label:hover ~ label.rate-label:before,
-input.rate-input:checked ~ label.rate-label:before {
-  content: "\f005";
 }
 
 /*=============================

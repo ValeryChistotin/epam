@@ -30,31 +30,21 @@ xhttp.onreadystatechange = function(){
       // ===============
       //   Rate
       // ===============
-      var rateWrapper = document.createElement('div'),
-        rateWrapperWrapper = document.createElement('div');
 
-      rateWrapper.className = 'rate';
-      rateWrapperWrapper.className = 'rate-wrapper';
+      var ratingWrapper = document.createElement('div');
+      ratingWrapper.className = 'rating';
 
       for(var i = 5; i--;){
-        var input = document.createElement('input'),
-          label = document.createElement('label');
-
-        input.type = 'radio';
-        input.className = 'rate-input';
-        input.id = 'star-rating-' + (i + 1);
-        label.htmlFor = 'stat-rating-' + (i + 1);
-        label.className = 'rate-label fa fa-star-o';
-
-        rateWrapperWrapper.appendChild(input);
-        rateWrapperWrapper.appendChild(label);
-        rateWrapper.appendChild(rateWrapperWrapper);
+        var ratingItemWrapper = document.createElement('label');
+        ratingItemWrapper.className = 'rating-item fa fa-star';
+        ratingItemWrapper.setAttribute('data-rate', i + 1);
+        ratingWrapper.appendChild(ratingItemWrapper);
       }
 
       rightsWrapper.appendChild(title);
       rightsWrapper.appendChild(author);
       bookAboutWrapper.appendChild(rightsWrapper);
-      bookAboutWrapper.appendChild(rateWrapper);
+      bookAboutWrapper.appendChild(ratingWrapper);
       bookWrapper.appendChild(img);
       bookWrapper.appendChild(bookAboutWrapper);
 
@@ -96,6 +86,52 @@ search.addEventListener('input', function(e){
       books.style.width = (bookWidth * booksCount) <= containerWidth && bookWidth * booksCount + 'px';
       item.parentNode.parentNode.style.display = 'flex';
     } else item.parentNode.parentNode.style.display = 'none';
+  })
+})
+
+// =============================
+//   Rate
+// =============================
+
+setTimeout(function(){
+  var rateContainer = document.getElementsByClassName('rating');
+  Array.from(rateContainer).forEach(function(mainRating){
+    mainRating.addEventListener('click', function(e){
+      newNotification('Rate');
+      e.preventDefault();
+
+      if(!e.target.classList.contains('active')){
+        Array.from(mainRating.children).forEach(function(item){
+          item.classList.remove('active');
+        });
+        e.target.classList.add('active');
+      }
+    })
+  })
+}, 1000)
+
+// =============================
+//   Most Popular
+// =============================
+
+var mostPopular = document.getElementById('popular'),
+  childrenItems = document.getElementsByClassName('rating-item');
+
+mostPopular.addEventListener('click', function(e){
+  newNotification('Most Popular');
+  e.preventDefault();
+
+  console.log(containerWidth);
+  var bookWidth = 216,
+    booksCount = 0;
+
+  Array.from(childrenItems).forEach(function(item){
+    if(item.classList.contains('active') && item.getAttribute('data-rate') == 5){
+      booksCount++;
+      item.parentNode.classList.add('on');
+      item.parentNode.parentNode.parentNode.style.display = 'flex';
+      books.style.width = (bookWidth * booksCount) <= containerWidth && bookWidth * booksCount + 'px';
+    } else if(!item.parentNode.classList.contains('on')) item.parentNode.parentNode.parentNode.style.display = 'none'
   })
 })
 
@@ -151,6 +187,9 @@ close.addEventListener('click', function(e){
 //   Notifications
 // =============================
 
+var lastAction = '',
+  textCount = 2;
+
 function newNotification(action){
   var notifications = document.getElementById('notifications'),
     notificationWrapper = document.createElement('div'),
@@ -162,28 +201,40 @@ function newNotification(action){
     date = new Date().getTime(),
     interval,
     timePassed,
-    minutes = 0;
+    minutes = 0,
+    counter = document.createElement('div');
 
-  notificationWrapper.className = 'notification';
-  noteWrapper.className = 'note';
-  time.className = 'time';
-  icon.className = 'fa fa-clock-o';
-  actionWrapper.textContent = action;
+  counter.className = 'notifications-count';
 
-  note.appendChild(actionWrapper);
-  note.appendChild(document.createTextNode(' Action'));
-  interval = setInterval(function(){
-    timePassed = Math.round((new Date().getTime() - date) / 1000);
-    if(timePassed >= 60){
-      time.textContent = ++minutes + ' minutes ago';
-      date = new Date().getTime();
-    } else if(!minutes) time.textContent = timePassed + ' seconds ago';
-  }, 1000);
+  if(lastAction === action){
+    lastAction = action;
+    counter.textContent = textCount++;
+    notifications.appendChild(counter);
+    if(textCount > 3) notifications.removeChild(notifications.children[notifications.children.length - 2]);
+  } else {
+    textCount = 2;
+    lastAction = action;
 
-  noteWrapper.appendChild(note);
-  noteWrapper.appendChild(time);
-  notificationWrapper.appendChild(icon);
-  notificationWrapper.appendChild(noteWrapper);
+    notificationWrapper.className = 'notification';
+    noteWrapper.className = 'note';
+    time.className = 'time';
+    icon.className = 'fa fa-clock-o';
+    actionWrapper.textContent = action;
 
-  notifications.appendChild(notificationWrapper);
+    note.appendChild(actionWrapper);
+    note.appendChild(document.createTextNode(' Action'));
+    interval = setInterval(function(){
+      timePassed = Math.round((new Date().getTime() - date) / 1000);
+      if(timePassed >= 60){
+        time.textContent = ++minutes + ' minutes ago';
+        date = new Date().getTime();
+      } else if(!minutes) time.textContent = timePassed + ' seconds ago';
+    }, 1000);
+
+    noteWrapper.appendChild(note);
+    noteWrapper.appendChild(time);
+    notificationWrapper.appendChild(icon);
+    notificationWrapper.appendChild(noteWrapper);
+    notifications.appendChild(notificationWrapper);
+  }
 }
