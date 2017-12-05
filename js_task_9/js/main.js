@@ -24,9 +24,10 @@ prepend(ul, li);
 var sub = document.getElementById('sub-list');
 
 function deleteTextNodes(element){
-  if(sub.parentNode){
-    sub.parentNode.removeChild(sub);
-  }
+  var children = element.childNodes;
+  children.forEach(function(item){
+    item.nodeType === 3 ? element.removeChild(item) : '';
+  })
 }
 
 // deleteTextNodes(sub);
@@ -37,13 +38,21 @@ function deleteTextNodes(element){
 
 var li = document.querySelector('ul li:last-child');
 
-function deleteTextNodes(element){
-  while(element.firstChild){
-    element.removeChild(element.firstChild);
+function deleteTextNodesRecursive(element){
+  function stringsCompare(a, b){
+    return b.nodeType === 3 ? 1 : 0;
+  }
+
+  var arr = [].slice.call(element.childNodes).sort(stringsCompare),
+    i = 0;
+
+  while(arr[i].nodeType == 3){
+    element.removeChild(arr[i]);
+    i++
   }
 }
 
-// deleteTextNodes(li);
+// deleteTextNodesRecursive(li);
 
 // =============================
 //  Task 4
