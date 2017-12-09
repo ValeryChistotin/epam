@@ -72,7 +72,9 @@ Calculator.prototype.reset = function(){
 // ====================================
 
 function ExtendedCalculator(userName){
-  Calculator.apply(this, arguments);
+  this.parent = ExtendedCalculator.prototype.__proto__.constructor;
+
+  this.parent.apply(this,arguments);
   this.userName = userName;
 }
 
@@ -109,7 +111,7 @@ ExtendedCalculator.prototype.pow = function(number, power){
 }
 
 ExtendedCalculator.prototype.getResult = function(){
-  Calculator.prototype.getResult.apply(this, arguments);
+  this.parent.prototype.getResult.apply(this, arguments);
   return this.userName + "'s result: " + this.state;
 }
 
