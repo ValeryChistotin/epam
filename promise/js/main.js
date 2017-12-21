@@ -12,8 +12,7 @@ function timer(ms){
 let delay = 3000;
 timer(delay).then(
   () => console.log(`Delay: ${delay / 1000}s`),
-  error => console.log(error)
-);
+  error => console.log(error));
 
 // =============================
 //  Task 2
@@ -43,20 +42,15 @@ function getCities(url){
 
 getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
   .then(response => {
-    let cities = JSON.parse(response);
-    return cities;
-  })
-  .then(cities => {
-    let cityNames = [];
+    let cities = JSON.parse(response),
+      cityNames = [];
+
     cities.forEach(city => cityNames.push(city.name) );
-    return cityNames;
-  })
-  .then(cityNames => {
     cityNames.sort();
     cityNames.forEach(city => {
       let cityWrapper = document.createElement('h2');
       cityWrapper.textContent = city;
       document.body.appendChild(cityWrapper);
     })
-  })
-  .catch(error => console.log(error));
+  },
+  error => console.log(error));
